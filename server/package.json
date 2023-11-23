@@ -1,0 +1,32 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "To do list app.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarolANikolic/todo-app.git"
+  },
+  "keywords": [
+    "to",
+    "do",
+    "list",
+    "app"
+  ],
+  "author": "Carol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarolANikolic/todo-app/issues"
+  },
+  "homepage": "https://github.com/CarolANikolic/todo-app#readme",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "path": "^0.12.7"
+  }
+}
