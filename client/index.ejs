@@ -7,6 +7,17 @@
 </head>
 <body>
     <main>
+        <form action="/" method="POST">
+            <input placeholder="I need to..." name="item" required></input>
+        </form>
+
+        <% if (items.length > 0) { %>
+            <ul>
+                <% items.forEach(item => { %>
+                    <li contenteditable="true"><input type="checkbox"><%= item.content %></input></li>
+                <% }); %>
+            </ul>
+        <% } %>
     </main>
 </body>
 </html>
