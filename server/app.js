@@ -2,7 +2,8 @@ import express from "express";
 import { fileURLToPath } from "url";
 import path from "path";
 import bodyParser from "body-parser";
-import fs from "fs";
+import getJsonData from "./utils/getJsonData.js";
+import saveEntryIntoData from "./utils/saveEntryIntoData.js";
 
 const app = express();
 const port = 3000;
@@ -24,13 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 let dataList = [];
 
-// Check if my json file exists.
-if (fs.existsSync(dataFilePath)) {
-    // Read the json file
-    const jsonData = fs.readFileSync(dataFilePath, "utf-8");
-    // Save the content of json file in my variable.
-    dataList = JSON.parse(jsonData);
-}
+dataList = getJsonData(dataFilePath);
 
 app.get("/", (req, res) => {
     res.render("index.ejs", { items: dataList });
@@ -44,8 +39,7 @@ app.post("/", (req, res) => {
     };
     
     // Add the new item into json file
-    dataList.push(newItem);
-    fs.writeFileSync(dataFilePath, JSON.stringify(dataList), "utf-8");
+    saveEntryIntoData(dataList, newItem, dataFilePath)
     
     // Render on the home page the list with the new item
     res.render("index.ejs", { items: dataList });
