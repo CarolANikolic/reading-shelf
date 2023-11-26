@@ -4,6 +4,7 @@ import path from "path";
 import bodyParser from "body-parser";
 import getJsonData from "./utils/getJsonData.js";
 import saveEntryIntoData from "./utils/saveEntryIntoData.js";
+import { v4 as uniqueID } from 'uuid';
 
 const app = express();
 const port = 3000;
@@ -35,7 +36,8 @@ app.post("/", (req, res) => {
     // Create a new object when the user enter an item.
     const newItem = {
         content: req.body.item,
-        active: true
+        active: true,
+        id: uniqueID()
     };
     
     // Add the new item into json file
