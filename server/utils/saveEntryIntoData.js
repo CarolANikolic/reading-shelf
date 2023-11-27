@@ -1,8 +1,7 @@
 import fs from "fs";
 
-const saveEntryIntoData = (entryArray, entry, jsonFilePath) => {
-    entryArray.push(entry);
-    fs.writeFileSync(jsonFilePath, JSON.stringify(entryArray), "utf-8");
+const saveEntryIntoData = (jsonFilePath, jsonFile) => {
+    fs.writeFileSync(jsonFilePath, JSON.stringify(jsonFile, null, 2));
 }
 
 export default saveEntryIntoData

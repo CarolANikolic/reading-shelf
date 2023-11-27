@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import getJsonData from "./utils/getJsonData.js";
 import saveEntryIntoData from "./utils/saveEntryIntoData.js";
 import { v4 as uniqueID } from 'uuid';
+import findMatchingID from "./utils/findMatchingID.js";
+
 
 const app = express();
 const port = 3000;
@@ -15,18 +17,25 @@ const __clientDir = path.resolve(__fileName, "../../client");
 const __currentDir = path.dirname(__fileName);
 const dataFilePath = path.join(__currentDir, "data.json");
 
+// Serve static files from the client side
+app.use(express.static(__clientDir));
+
 // Set the view engine to ejs
 app.set("view engine", "ejs");
 
-// Define the views folder where your ejs files are located
-app.set("views", `${__clientDir}`);
+// Set the views folder where the ejs files are located
+app.set("views", path.join(__clientDir, "views"));
+
+// Parse json data
+app.use(express.json())
 
 // Mount middlware to pass body data encoded on the url
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let dataList = [];
+const jsonData = getJsonData(dataFilePath);
 
-dataList = getJsonData(dataFilePath);
+dataList = jsonData;
 
 app.get("/", (req, res) => {
     res.render("index.ejs", { items: dataList });
@@ -39,14 +48,37 @@ app.post("/", (req, res) => {
         active: true,
         id: uniqueID()
     };
+
     
     // Add the new item into json file
-    saveEntryIntoData(dataList, newItem, dataFilePath)
+    dataList.push(newItem);
+    saveEntryIntoData(dataFilePath, dataList)
     
     // Render on the home page the list with the new item
     res.render("index.ejs", { items: dataList });
 });
 
+app.put("/updateItem/:itemID", (req, res) => {
+    console.log("PUT endpoint reached");
+    const itemID = req.params.itemID;
+    const itemNewContent = req.body.content;
+    const itemToBeUpdatedOnList = findMatchingID(dataList, itemID);
+
+    if (itemToBeUpdatedOnList) {
+        // Update the data on the dataList array
+        itemToBeUpdatedOnList.content = itemNewContent;
+
+        // Update the data in jsonData array
+        saveEntryIntoData(dataFilePath, jsonData)
+
+        res.json({ message: "Item updated successfully" });
+    } else {
+        res.status(404).json({ error: "Item not found" });
+    }
+
+})
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}.`);
 });
+

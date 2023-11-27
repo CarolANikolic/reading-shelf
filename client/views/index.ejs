@@ -14,10 +14,19 @@
         <% if (items.length > 0) { %>
             <ul>
                 <% items.forEach(item => { %>
-                    <li contenteditable="true"><input type="checkbox"><%= item.content %></input></li>
+                    <li 
+                    contenteditable="true"
+                    data-itemid="<%= item.id%>" >
+                        <input 
+                        type="checkbox">
+                            <%= item.content %>
+                        </input>
+                    </li>
                 <% }); %>
             </ul>
         <% } %>
     </main>
+
+    <script src="./src/functions/updateItemContent.js"></script>
 </body>
 </html>
