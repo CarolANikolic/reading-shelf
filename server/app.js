@@ -49,7 +49,6 @@ app.post("/", (req, res) => {
         id: uniqueID()
     };
 
-    
     // Add the new item into json file
     dataList.push(newItem);
     saveEntryIntoData(dataFilePath, dataList)
@@ -59,7 +58,6 @@ app.post("/", (req, res) => {
 });
 
 app.put("/updateItem/:itemID", (req, res) => {
-    console.log("PUT endpoint reached");
     const itemID = req.params.itemID;
     const itemNewContent = req.body.content;
     const itemToBeUpdatedOnList = findMatchingID(dataList, itemID);
@@ -75,7 +73,6 @@ app.put("/updateItem/:itemID", (req, res) => {
     } else {
         res.status(404).json({ error: "Item not found" });
     }
-
 })
 
 app.listen(port, () => {

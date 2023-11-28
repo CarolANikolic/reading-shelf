@@ -27,6 +27,4 @@ const updateItemContent = () => {
     }); 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    updateItemContent()
-})
+export default updateItemContent
