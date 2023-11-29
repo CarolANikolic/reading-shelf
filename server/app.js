@@ -6,10 +6,19 @@ import getJsonData from "./utils/getJsonData.js";
 import saveEntryIntoData from "./utils/saveEntryIntoData.js";
 import { v4 as uniqueID } from 'uuid';
 import findMatchingID from "./utils/findMatchingID.js";
-
+import pg from "pg";
 
 const app = express();
 const port = 3000;
+
+// Connect postgreSQL database
+const db = new pg.Client({
+    user: "postgres",
+    host: "localhost",
+    database: "todoList",
+    password: "Bazingadatabase$",
+    port: 5432,
+});
 
 // Define paths: current file, client directory, current  directory, json file.
 const __fileName = fileURLToPath(import.meta.url);
@@ -41,12 +50,12 @@ app.get("/", (req, res) => {
     res.render("index.ejs", { items: dataList });
 });
 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
     // Create a new object when the user enter an item.
     const newItem = {
+        id: uniqueID(),
         content: req.body.item,
-        active: true,
-        id: uniqueID()
+        active: true
     };
 
     // Add the new item into json file
@@ -78,4 +87,3 @@ app.put("/updateItem/:itemID", (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}.`);
 });
-
