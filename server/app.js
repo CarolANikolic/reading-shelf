@@ -7,6 +7,7 @@ import saveEntryIntoData from "./utils/saveEntryIntoData.js";
 import { v4 as uniqueID } from 'uuid';
 import findMatchingID from "./utils/findMatchingID.js";
 import pg from "pg";
+import insertDataIntoDb from "./service/insertDataIntoDb.js";
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,8 @@ const db = new pg.Client({
     password: "Bazingadatabase$",
     port: 5432,
 });
+
+db.connect();
 
 // Define paths: current file, client directory, current  directory, json file.
 const __fileName = fileURLToPath(import.meta.url);
@@ -51,20 +54,33 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-    // Create a new object when the user enter an item.
-    const newItem = {
-        id: uniqueID(),
-        content: req.body.item,
-        active: true
-    };
+    try {
+        // Create a new object when the user enters an item.
+        const newItem = {
+            id: uniqueID(),
+            content: req.body.item,
+            active: true
+        };
 
-    // Add the new item into json file
-    dataList.push(newItem);
-    saveEntryIntoData(dataFilePath, dataList)
-    
-    // Render on the home page the list with the new item
-    res.render("index.ejs", { items: dataList });
+        // Add the new item into the JSON file
+        dataList.push(newItem);
+        saveEntryIntoData(dataFilePath, dataList);
+
+        const tableName = "todo_list";
+        const columns = ["id", "content", "active"];
+        const values = [newItem.id, newItem.content, newItem.active];
+
+        // Wait for the database insertion to complete
+        await insertDataIntoDb(db, tableName, columns, values);
+
+        // Render on the home page the list with the new item
+        res.render("index.ejs", { items: dataList });
+    } catch (err) {
+        console.error('Error inserting item into database:', err);
+        res.status(500).send('Error adding item');
+    }
 });
+
 
 app.put("/updateItem/:itemID", (req, res) => {
     const itemID = req.params.itemID;
