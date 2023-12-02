@@ -8,7 +8,7 @@ import { v4 as uniqueID } from 'uuid';
 import findMatchingID from "./utils/findMatchingID.js";
 import pg from "pg";
 import insertDataIntoDb from "./service/insertDataIntoDb.js";
-import closeDb from "./service/closeDb.js";
+import { handleExit } from "./service/handleExitSignals.js";
 
 const app = express();
 const port = 3000;
@@ -104,5 +104,5 @@ const server = app.listen(port, () => {
     console.log(`Server running on port ${port}.`);
 });
 
-// Close the database connection when the Node.js application is terminated
-closeDb(db, server)
+// Cleanup tasks (close database) and exit the app properly.
+handleExit(db, server)
