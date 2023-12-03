@@ -6,23 +6,14 @@ import getJsonData from "./utils/getJsonData.js";
 import saveEntryIntoData from "./utils/saveEntryIntoData.js";
 import { v4 as uniqueID } from 'uuid';
 import findMatchingID from "./utils/findMatchingID.js";
-import pg from "pg";
+import db from "./database/databaseConfig.js";
 import insertDataIntoDb from "./service/insertDataIntoDb.js";
 import { handleExit } from "./service/handleExitSignals.js";
 
 const app = express();
 const port = 3000;
 
-// Connect postgreSQL database
-const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
-    database: "todoList",
-    password: "Bazingadatabase$",
-    port: 5432,
-});
-
-db.connect();
+db.connect()
 
 // Define paths: current file, client directory, current  directory, json file.
 const __fileName = fileURLToPath(import.meta.url);
