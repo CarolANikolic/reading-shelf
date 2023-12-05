@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "31732fea-dd77-4e4b-94a7-437d413b6fda",
+    "content": "lower case",
+    "active": true
+  },
+  {
+    "id": "06e646cf-475c-45ad-9106-2be65f445567",
+    "content": "to lower case",
+    "active": true
+  },
+  {
+    "id": "75225a36-b2a3-4d70-b22e-7541e8840d88",
+    "content": "to lower case",
+    "active": true
+  }
+]

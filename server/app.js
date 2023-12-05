@@ -10,6 +10,7 @@ import db from "./database/databaseConfig.js";
 import insertDataIntoDb from "./service/insertDataIntoDb.js";
 import { handleExit } from "./service/handleExitSignals.js";
 import isEmptyInput from "./utils/isEmptyInput.js";
+import isInputRepeated from "./service/checkIsInputRepeated.js";
 
 const app = express();
 const port = 3000;
@@ -47,13 +48,15 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", async (req, res) => {
+    const content = req.body.item.toLowerCase().trim();
+
     if (!isEmptyInput(req.body.item)) {
 
         try {
             // Create a new object when the user enters an item.
             const newItem = {
                 id: uniqueID(),
-                content: req.body.item,
+                content: content,
                 active: true
             };
     
@@ -61,16 +64,24 @@ app.post("/", async (req, res) => {
             dataList.push(newItem);
     
             saveEntryIntoData(dataFilePath, dataList);
-    
-            const tableName = "todo_list";
-            const columns = ["id", "content", "active"];
-            const values = [newItem.id, newItem.content, newItem.active];
-    
-            // Wait for the database insertion to complete
-            await insertDataIntoDb(db, tableName, columns, values);
-    
+            
+            // Check if the newItem already exists on the database
+            const repeatedItems = await isInputRepeated(db, newItem.content)
+            
+            if (repeatedItems.length === 0) {
+                const tableName = "todo_list";
+                const columns = ["id", "content", "active"];
+                const values = [newItem.id, newItem.content, newItem.active];
+
+               // Wait for the database insertion to complete
+                await insertDataIntoDb(db, tableName, columns, values);
+            } else {
+                console.log("This item already exists.")
+            }
+
             // Render on the home page the list with the new item
             res.render("index.ejs", { items: dataList });
+
         } catch (err) {
             console.error('Error inserting item into database:', err);
             res.status(500).send('Error adding item');
