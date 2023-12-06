@@ -11,6 +11,8 @@
             <input placeholder="I need to..." name="item" required></input>
         </form>
 
+        <span><%= errorMessage %></span>
+
         <% if (items.length > 0) { %>
             <ul>
                 <% items.forEach(item => { %>

@@ -44,14 +44,14 @@ const jsonData = getJsonData(dataFilePath);
 dataList = jsonData;
 
 app.get("/", (req, res) => {
-    res.render("index.ejs", { items: dataList });
+    res.render("index.ejs", { items: dataList, errorMessage: "" });
 });
 
 app.post("/", async (req, res) => {
     const content = req.body.item.toLowerCase().trim();
-
+    
     if (!isEmptyInput(req.body.item)) {
-
+        
         try {
             // Create a new object when the user enters an item.
             const newItem = {
@@ -59,10 +59,10 @@ app.post("/", async (req, res) => {
                 content: content,
                 active: true
             };
-    
+            
             // Add the new item into the JSON file
             dataList.push(newItem);
-    
+            
             saveEntryIntoData(dataFilePath, dataList);
             
             // Check if the newItem already exists on the database
@@ -75,12 +75,11 @@ app.post("/", async (req, res) => {
 
                // Wait for the database insertion to complete
                 await insertDataIntoDb(db, tableName, columns, values);
-            } else {
-                console.log("This item already exists.")
-            }
 
-            // Render on the home page the list with the new item
-            res.render("index.ejs", { items: dataList });
+                res.redirect("/")
+            } else {
+                res.render("index.ejs", { items: dataList, errorMessage: "This item already exists." })
+            }
 
         } catch (err) {
             console.error('Error inserting item into database:', err);
