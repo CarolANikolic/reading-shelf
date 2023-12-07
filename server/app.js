@@ -11,6 +11,7 @@ import insertDataIntoDb from "./service/insertDataIntoDb.js";
 import { handleExit } from "./service/handleExitSignals.js";
 import isEmptyInput from "./utils/isEmptyInput.js";
 import isInputRepeated from "./service/checkIsInputRepeated.js";
+import queryAllContent from "./service/queryAllContent.js";
 
 const app = express();
 const port = 3000;
@@ -40,11 +41,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 let dataList = [];
 const jsonData = getJsonData(dataFilePath);
-
 dataList = jsonData;
 
-app.get("/", (req, res) => {
-    res.render("index.ejs", { items: dataList, errorMessage: "" });
+
+const items = await queryAllContent(
+    db, 
+    "todo_list", 
+    "content"
+)
+
+app.get("/", async (req, res) => {
+    res.render("index.ejs", { items: items, errorMessage: "" });
 });
 
 app.post("/", async (req, res) => {
