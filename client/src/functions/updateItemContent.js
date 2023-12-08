@@ -20,7 +20,16 @@ const updateItemContent = () => {
                     body: JSON.stringify({content: itemNewContent})
                 })
                 .then(response => response.json())
-                .then(updatedItem => console.log('Item updated:', updatedItem))
+                .then(async updatedItem => {
+
+                    if (!updatedItem.ok) {
+                        const errorSpan = document.querySelector(".errorMessage");
+                        const errorData = await updatedItem;
+                        errorSpan.innerText = errorData.errorMessage;
+                    } else {
+                        return response.json();
+                    }
+                })
                 .catch(error => console.log("Error updating item:", error))
             }
         })
