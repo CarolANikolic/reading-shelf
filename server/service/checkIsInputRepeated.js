@@ -1,6 +1,6 @@
 const checkIsInputRepeated = async (db, valueToCompare) => { 
     try {
-        const queryForRepeatedValue = 'SELECT * FROM todo_list WHERE content = $1';
+        const queryForRepeatedValue = 'SELECT * FROM todo_list WHERE LOWER(TRIM(content)) = LOWER(TRIM($1))';
         const resultForRepeatedValue = await db.query(queryForRepeatedValue, [valueToCompare])
         return resultForRepeatedValue.rows
     } catch (error) {

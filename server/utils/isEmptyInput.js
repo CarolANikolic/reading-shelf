@@ -1,5 +1,5 @@
 const isEmptyInput = (inputValue) => {
-    return inputValue.trim() === "";
+    return inputValue.trim().toLowerCase() === "";
 }
 
 export default isEmptyInput
