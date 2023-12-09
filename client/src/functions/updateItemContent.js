@@ -28,7 +28,7 @@ const updateItemContent = () => {
                         errorSpan.innerText = errorData.errorMessage;
                     } else {
                         return response.json();
-                    }
+                    }     
                 })
                 .catch(error => console.log("Error updating item:", error))
             }

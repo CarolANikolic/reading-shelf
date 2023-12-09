@@ -10,6 +10,7 @@ import isEmptyInput from "./utils/isEmptyInput.js";
 import checkIsInputRepeated from "./service/checkIsInputRepeated.js";
 import queryAllItems from "./service/queryAllItems.js";
 import updateEditedItem from "./service/updateEditedItem.js";
+import http from "http";
 
 const app = express();
 const port = 3000;
@@ -60,7 +61,9 @@ app.post("/", async (req, res) => {
                 const values = [newItem.id, newItem.content, newItem.active];
 
                 await insertDataIntoDb(db, tableName, columns, values);
-                res.redirect("/");
+
+                const updatedItems = await queryAllItems(db, "todo_list");
+                res.render("index.ejs", { items: updatedItems, errorMessage: "" });
             } else {
                 res.render("index.ejs", { items: items, errorMessage: "This item already exists." });
             }
@@ -83,13 +86,11 @@ app.put("/updateItem/:itemID", async (req, res) => {
             const editedItemResult = await updateEditedItem(db, itemID, itemNewContent);
 
             if (editedItemResult !== 0 && isEmptyInput(itemNewContent) === false) {
-                const updatedItems = await queryAllItems(db, "todo_list");
-                res.json({ errorMessage: "Item updated successfully." });
+                res.json({ errorMessage: "" });
                 console.log("Item updated successfully.")
             } else {
                 res.status(404).json({ errorMessage: "Item not found." });
             }
-
         } else {
             res.json({ errorMessage: "This item already exists." });
         }
