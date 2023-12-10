@@ -10,7 +10,7 @@ import isEmptyInput from "./utils/isEmptyInput.js";
 import checkIsInputRepeated from "./service/checkIsInputRepeated.js";
 import queryAllItems from "./service/queryAllItems.js";
 import updateEditedItem from "./service/updateEditedItem.js";
-import http from "http";
+import deleteItem from "./service/deleteItem.js";
 
 const app = express();
 const port = 3000;
@@ -99,6 +99,20 @@ app.put("/updateItem/:itemID", async (req, res) => {
         res.status(500).json({ error: "Error updating item." });
     }
 });
+
+app.delete("/delete/:itemID", async (req, res) => {
+    const itemID = req.params.itemID;
+    const status = req.params.status;
+
+    if (!status) {
+        try {
+            await deleteItem(db, itemID)
+            console.log("item deleted sucessfully.")
+        } catch (error){
+            console.log("Item was not deleted:", error)
+        }
+    }
+})
 
 const server = app.listen(port, () => {
     console.log(`Server running on port ${port}.`);
