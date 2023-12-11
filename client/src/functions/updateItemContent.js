@@ -1,7 +1,7 @@
-const updateItemContent = () => {
-    const editableItems = [...document.querySelectorAll("[data-itemid]")];
+const updateItemContent = (items) => {
+    // const editableItems = [...document.querySelectorAll("[data-itemid]")];
 
-    editableItems.forEach(item => {
+    items.forEach(item => {
         const currentContent = item.innerText;
 
         item.addEventListener("blur", () => {

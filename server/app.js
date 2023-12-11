@@ -10,7 +10,7 @@ import isEmptyInput from "./utils/isEmptyInput.js";
 import checkIsInputRepeated from "./service/checkIsInputRepeated.js";
 import queryAllItems from "./service/queryAllItems.js";
 import updateEditedItem from "./service/updateEditedItem.js";
-import deleteItem from "./service/deleteItem.js";
+import deleteItemDb from "./service/deleteItemDb.js";
 
 const app = express();
 const port = 3000;
@@ -41,6 +41,7 @@ const items = await queryAllItems(db, "todo_list");
 app.get("/", async (req, res) => {
     res.render("index.ejs", { items: items, errorMessage: "" });
 });
+
 
 app.post("/", async (req, res) => {
     const content = req.body.item;
@@ -75,6 +76,7 @@ app.post("/", async (req, res) => {
     }
 });
 
+
 app.put("/updateItem/:itemID", async (req, res) => {
     const itemID = req.params.itemID;
     const itemNewContent = req.body.content;
@@ -100,19 +102,20 @@ app.put("/updateItem/:itemID", async (req, res) => {
     }
 });
 
+
 app.delete("/delete/:itemID", async (req, res) => {
     const itemID = req.params.itemID;
-    const status = req.params.status;
 
-    if (!status) {
-        try {
-            await deleteItem(db, itemID)
-            console.log("item deleted sucessfully.")
-        } catch (error){
-            console.log("Item was not deleted:", error)
-        }
+    try {
+        await deleteItemDb(db, itemID);
+        console.log("Item deleted successfully.");
+        res.sendStatus(200); 
+    } catch (error) {
+        console.log("Item was not deleted:", error);
+        res.status(500).send("Error deleting item.");
     }
-})
+});
+
 
 const server = app.listen(port, () => {
     console.log(`Server running on port ${port}.`);

@@ -1,7 +1,9 @@
 import updateItemContent from "./updateItemContent.js";
-import updateItemStatus from "./updateItemStatus.js";
+import updateUI from "./updateUI.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    updateItemContent();
-    updateItemStatus();
+    const items = [...document.querySelectorAll("[data-itemid]")];
+
+    updateItemContent(items);
+    updateUI(items);
 })
