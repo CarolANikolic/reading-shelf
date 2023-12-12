@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do App</title>
+    <title>Book Library</title>
 </head>
 <body>
     <main>
-        <form action="/" method="POST">
-            <input placeholder="I need to..." name="item" required></input>
-        </form>
+        <section>
+            <div>
+                <h1>Books to Read Before You Die</h1>
+                <p>Life's too short to miss out on great reads.</p>
+            </div>
+            <form action="/" method="POST">
+                <label for="input-book">Add a book to read:</label>
+                <input placeholder="e.g. The Bell Jar - Sylvia Plath" id="input-book" name="item" required></input>
+            </form>
+    
+            <span class="errorMessage"><%= errorMessage %></span>
 
-        <span class="errorMessage"><%= errorMessage %></span>
+        </section>
 
         <% if (items.length > 0) { %>
             <ul>
@@ -20,8 +28,8 @@
                     contenteditable="true"
                     data-itemid="<%= item.id%>" >
                             <%= item.content %>
-                        <img data-itemread="read" src="../public/images/clipboard-tick.svg"/>
-                        <img data-itemdelete="delete" src="../public/images/trash.svg"/>
+                        <img data-itemread="read" src="../public/images/icon-read.svg"/>
+                        <img data-itemdelete="delete" src="../public/images/icon-trash.svg"/>
                     </li>
                 <% }); %>
             </ul>

@@ -36,9 +36,10 @@ app.use(express.json())
 // Mount middlware to pass body data encoded on the url
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const items = await queryAllItems(db, "todo_list");
+
 
 app.get("/", async (req, res) => {
+    const items = await queryAllItems(db, "book_list");
     res.render("index.ejs", { items: items, errorMessage: "" });
 });
 
@@ -57,16 +58,16 @@ app.post("/", async (req, res) => {
             const repeatedItems = await checkIsInputRepeated(db, newItem.content);
 
             if (repeatedItems.length === 0) {
-                const tableName = "todo_list";
+                const tableName = "book_list";
                 const columns = ["id", "content", "active"];
                 const values = [newItem.id, newItem.content, newItem.active];
 
                 await insertDataIntoDb(db, tableName, columns, values);
 
-                const updatedItems = await queryAllItems(db, "todo_list");
+                const updatedItems = await queryAllItems(db, "book_list");
                 res.render("index.ejs", { items: updatedItems, errorMessage: "" });
             } else {
-                res.render("index.ejs", { items: items, errorMessage: "This item already exists." });
+                res.render("index.ejs", { items: items, errorMessage: "This book already exists." });
             }
 
         } catch (err) {
@@ -89,13 +90,13 @@ app.put("/updateItem/:itemID", async (req, res) => {
 
             if (editedItemResult !== 0 && isEmptyInput(itemNewContent) === false) {
                 res.json({ errorMessage: "" });
-                console.log("Item updated successfully.")
+                console.log("Book updated successfully.")
             } else {
                 res.status(404).json({ errorMessage: "" });
                 console.log("Item not found.")
             }
         } else {
-            res.json({ errorMessage: "This item already exists." });
+            res.json({ errorMessage: "This book already exists." });
         }
     } catch (error) {
         console.error('Error updating item:', error);

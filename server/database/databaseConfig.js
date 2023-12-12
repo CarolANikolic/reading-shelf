@@ -3,7 +3,7 @@ import pg from "pg";
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
-    database: "todoList",
+    database: "bookList",
     password: "Bazingadatabase$",
     port: 5432,
     application_name: "todoApp"
