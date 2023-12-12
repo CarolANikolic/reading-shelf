@@ -12,29 +12,46 @@
                 <h1>Books to Read Before You Die</h1>
                 <p>Life's too short to miss out on great reads.</p>
             </div>
+
             <form action="/" method="POST">
                 <label for="input-book">Add a book to read:</label>
                 <input placeholder="e.g. The Bell Jar - Sylvia Plath" id="input-book" name="item" required></input>
             </form>
     
             <span class="errorMessage"><%= errorMessage %></span>
-
         </section>
 
-        <% if (items.length > 0) { %>
-            <ul>
-                <% items.forEach(item => { %>
-                    <li 
-                    contenteditable="true"
-                    data-itemid="<%= item.id%>" >
-                            <%= item.content %>
-                        <img data-itemread="read" src="../public/images/icon-read.svg"/>
-                        <img data-itemdelete="delete" src="../public/images/icon-trash.svg"/>
-                    </li>
-                <% }); %>
-            </ul>
-        <% } %>
+        <section>
+            <div>
+                <% if (items.length > 0) { %>
+                    <ul>
+                        <% items.forEach(item => { %>
+                            <li 
+                            contenteditable="true"
+                            data-itemid="<%= item.id%>" >
+                                    <%= item.content %>
+                                <img data-itemread="read" src="../public/images/icon-read.svg" alt="Mark as read"/>
+                                <img data-itemdelete="delete" src="../public/images/icon-trash.svg" alt="Delete book"/>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } %>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><button type="submit">All</button></li>
+                    <li><button type="submit">Read</button></li>
+                    <li><button type="submit">To Read</button></li>
+                </ul>
+                
+            </nav>
+        </section>
     </main>
+
+    <footer>
+        <p>Made with ❤️ by Carol Nikolic</p>
+    </footer>
 
     <script type="module" src="./src/functions/main.js"></script>
 </body>
