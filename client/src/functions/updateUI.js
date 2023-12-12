@@ -13,18 +13,20 @@ const deleteItem = async (itemID) => {
     }
 }
 
+const updateUI = (items, itemIdentifier) => {
 
-const updateUI = (items) => {
-
-    items.forEach(item => {
-        const itemID = item.dataset.itemid;
-
-        item.addEventListener("change", async () => {
+items.forEach(item => {
+    
+    item.addEventListener("click", async () => {
+            const listItem = item.closest([itemIdentifier]);
+            const itemID = listItem.dataset.itemid;
             const deleted = await deleteItem(itemID);
 
+        if (listItem) {
             if (deleted) {
-                item.parentNode.removeChild(item);
+                listItem.remove();
             }
+        }
         });
     });
 };

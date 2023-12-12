@@ -19,10 +19,9 @@
                     <li 
                     contenteditable="true"
                     data-itemid="<%= item.id%>" >
-                        <input 
-                        type="checkbox">
                             <%= item.content %>
-                        </input>
+                        <img data-itemread="read" src="../public/images/clipboard-tick.svg"/>
+                        <img data-itemdelete="delete" src="../public/images/trash.svg"/>
                     </li>
                 <% }); %>
             </ul>

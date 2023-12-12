@@ -1,5 +1,4 @@
 const updateItemContent = (items) => {
-    // const editableItems = [...document.querySelectorAll("[data-itemid]")];
 
     items.forEach(item => {
         const currentContent = item.innerText;

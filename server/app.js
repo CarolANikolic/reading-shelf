@@ -91,7 +91,8 @@ app.put("/updateItem/:itemID", async (req, res) => {
                 res.json({ errorMessage: "" });
                 console.log("Item updated successfully.")
             } else {
-                res.status(404).json({ errorMessage: "Item not found." });
+                res.status(404).json({ errorMessage: "" });
+                console.log("Item not found.")
             }
         } else {
             res.json({ errorMessage: "This item already exists." });
