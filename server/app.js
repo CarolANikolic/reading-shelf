@@ -37,10 +37,13 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
-app.get("/", async (req, res) => {
-    const items = await queryAllItems(db, "book_list");
-    res.render("index.ejs", { items: items, errorMessage: "" });
+app.get("/", async (error, res) => {
+    try {
+        const items = await queryAllItems(db, "book_list");
+        res.render("index.ejs", { items: items, errorMessage: "" });
+    } catch (error) {
+        console.log("Unable to query items:", error)
+    }
 });
 
 
@@ -86,7 +89,7 @@ app.put("/updateItem/:itemID", async (req, res) => {
         const isNewContentRepeated = await checkIsInputRepeated(db, itemNewContent);
 
         if (isNewContentRepeated.length === 0) {
-            const editedItemResult = await updateEditedItem(db, itemID, itemNewContent);
+            const editedItemResult = await updateEditedItem(db, itemID, "content", itemNewContent);
 
             if (editedItemResult !== 0 && isEmptyInput(itemNewContent) === false) {
                 res.json({ errorMessage: "" });
