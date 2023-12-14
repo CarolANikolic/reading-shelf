@@ -1,11 +1,16 @@
 import updateItemContent from "./updateItemContent.js";
 import updateUI  from "./updateUI.js";
 import deleteItem from "./deleteItem.js";
+import markAsRead from "./markAsRead.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const items = [...document.querySelectorAll("[data-itemid]")];
-    const trashBin = document.querySelectorAll("li [data-itemdelete]");
+    const trashBins = [...document.querySelectorAll("li [data-itemdelete]")];
+    const readIcons = [...document.querySelectorAll("li [data-itemread]")];
 
     updateItemContent(items);
-    updateUI(trashBin, "li[data-itemid", deleteItem);
+    updateUI(trashBins, "li[data-itemid]", deleteItem, "delete");
+    updateUI(readIcons, "li[data-itemid]", markAsRead, "read");
+    
+
 });
