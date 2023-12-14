@@ -122,6 +122,20 @@ app.delete("/delete/:itemID", async (req, res) => {
 });
 
 
+app.put("/read/:itemID", async (req, res) => {
+    const itemID = req.params.itemID;
+
+    try {
+        await updateEditedItem(db, itemID, "active", false);
+        console.log("Item marked as read successfully");
+        res.sendStatus(200);
+    } catch (error) {
+        console.log("Failed updating active column:", error);
+        res.status(500).send("Error marking item as read.")
+    }
+});
+
+
 const server = app.listen(port, () => {
     console.log(`Server running on port ${port}.`);
 });
