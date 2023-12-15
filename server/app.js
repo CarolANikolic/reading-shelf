@@ -11,6 +11,7 @@ import checkIsInputRepeated from "./service/checkIsInputRepeated.js";
 import queryAllItems from "./service/queryAllItems.js";
 import updateEditedItem from "./service/updateEditedItem.js";
 import deleteItemDb from "./service/deleteItemDb.js";
+import checkItemActiveStatus from "./service/checkItemActiveStatus.js";
 
 const app = express();
 const port = 3000;
@@ -126,9 +127,23 @@ app.put("/read/:itemID", async (req, res) => {
     const itemID = req.params.itemID;
 
     try {
-        await updateEditedItem(db, itemID, "active", false);
-        console.log("Item marked as read successfully");
-        res.sendStatus(200);
+        const itemStatus = await checkItemActiveStatus(db, "active", itemID);
+        console.log(itemStatus)
+
+        if (itemStatus === true) {
+            await updateEditedItem(db, itemID, "active", false);
+            console.log("Status is:", await checkItemActiveStatus(db, "active", itemID))
+            console.log("Item marked as read successfully");
+            res.sendStatus(200);
+
+        } 
+        
+        if (itemStatus === false) {
+            await updateEditedItem(db, itemID, "active", true);
+            console.log("Status is:", await checkItemActiveStatus(db, "active", itemID))
+            console.log("Item marked as read successfully");
+            res.sendStatus(200);
+        }
     } catch (error) {
         console.log("Failed updating active column:", error);
         res.status(500).send("Error marking item as read.")
