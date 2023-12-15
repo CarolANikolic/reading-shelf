@@ -39,8 +39,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get("/", async (error, res) => {
+    const items = await queryAllItems(db, "book_list");
+    
     try {
-        const items = await queryAllItems(db, "book_list");
         res.render("index.ejs", { items: items, errorMessage: "" });
     } catch (error) {
         console.log("Unable to query items:", error)
@@ -71,6 +72,7 @@ app.post("/", async (req, res) => {
                 const updatedItems = await queryAllItems(db, "book_list");
                 res.render("index.ejs", { items: updatedItems, errorMessage: "" });
             } else {
+                const items = await queryAllItems(db, "book_list");
                 res.render("index.ejs", { items: items, errorMessage: "This book already exists." });
             }
 
@@ -125,25 +127,20 @@ app.delete("/delete/:itemID", async (req, res) => {
 
 app.put("/read/:itemID", async (req, res) => {
     const itemID = req.params.itemID;
+    const itemStatus = await checkItemActiveStatus(db, "active", itemID);
 
     try {
-        const itemStatus = await checkItemActiveStatus(db, "active", itemID);
-        console.log(itemStatus)
-
         if (itemStatus === true) {
             await updateEditedItem(db, itemID, "active", false);
-            console.log("Status is:", await checkItemActiveStatus(db, "active", itemID))
             console.log("Item marked as read successfully");
             res.sendStatus(200);
-
         } 
         
         if (itemStatus === false) {
             await updateEditedItem(db, itemID, "active", true);
-            console.log("Status is:", await checkItemActiveStatus(db, "active", itemID))
-            console.log("Item marked as read successfully");
+            console.log("Item marked as to be read successfully");
             res.sendStatus(200);
-        }
+        } 
     } catch (error) {
         console.log("Failed updating active column:", error);
         res.status(500).send("Error marking item as read.")
