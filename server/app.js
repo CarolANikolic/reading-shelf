@@ -12,6 +12,7 @@ import queryAllItems from "./service/queryAllItems.js";
 import updateEditedItem from "./service/updateEditedItem.js";
 import deleteItemDb from "./service/deleteItemDb.js";
 import checkItemActiveStatus from "./service/checkItemActiveStatus.js";
+import filterItemsFromDb from "./service/filterItemsFromDb.js";
 
 const app = express();
 const port = 3000;
@@ -146,6 +147,19 @@ app.put("/read/:itemID", async (req, res) => {
         res.status(500).send("Error marking item as read.")
     }
 });
+
+app.get('/filter', async (req, res) => {
+    try {
+        const filteredItems = await filterItemsFromDb(db, 'book_list', 'active', false);
+       
+        res.render("index.ejs", { items: filteredItems, errorMessage: "" });
+        console.log('Sent filtered items successfully');
+    } catch (error) {
+        console.error('Error filtering items:', error);
+        res.status(500).json({ error: 'Error filtering items' });
+    }
+});
+
 
 
 const server = app.listen(port, () => {
