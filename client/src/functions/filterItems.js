@@ -1,3 +1,5 @@
+import updateErrorMessage from "./updateErrorMessage.js";
+
 const filterItems = (filterButton, elementIdentifier, keyword) => {
     filterButton.addEventListener("click", async () => {
         try {
@@ -14,6 +16,7 @@ const filterItems = (filterButton, elementIdentifier, keyword) => {
             if (filterResponse.ok) {
                 // Update the DOM with the modified HTML
                 document.documentElement.innerHTML = responseText; 
+                updateErrorMessage(responseText, elementIdentifier, keyword);
             } 
         } catch (error) {
             console.log("Error displaying filtered items:", error);

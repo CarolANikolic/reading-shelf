@@ -151,7 +151,7 @@ app.put("/read/:itemID", async (req, res) => {
 app.get('/filter', async (req, res) => {
     try {
         const filteredItems = await filterItemsFromDb(db, 'book_list', 'active', false);
-       
+        
         res.render("index.ejs", { items: filteredItems, errorMessage: "" });
         console.log('Sent filtered items successfully');
     } catch (error) {
