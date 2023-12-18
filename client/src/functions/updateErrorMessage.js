@@ -1,6 +1,6 @@
-const updateErrorMessage = (response, elementIdentifier, keyword) => {
+const updateErrorMessage = (documentText, elementIdentifier, keyword) => {
 
-const existsFilteredItems = response.includes(elementIdentifier);
+const existsFilteredItems = documentText.includes(elementIdentifier);
 const errorMessage = document.querySelector(".errorMessage")
 
     if (!existsFilteredItems) {
