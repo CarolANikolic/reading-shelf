@@ -166,6 +166,22 @@ app.post("/filter-read", async (req, res) => {
 
 });
 
+app.post("/filter-to-read", async (req, res) => {
+    try {
+        const filteredItems = await filterItemsFromDb(db, 'book_list', 'active', true);   
+        if (filteredItems.length > 0) {
+            res.render("index.ejs", { items: filteredItems, errorMessage: "" });     
+        } else {
+            res.render("index.ejs", { items: filteredItems, errorMessage: "You read all the titles added." });
+        }
+
+    } catch (error) {
+        console.error('Error filtering items:', error);
+        res.status(500).json({ error: 'Error filtering items' });
+    }
+
+});
+
 
 const server = app.listen(port, () => {
     console.log(`Server running on port ${port}.`);

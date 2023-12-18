@@ -51,11 +51,17 @@
 
             <nav>
                 <ul>
-                    <li><button type="submit">All</button></li>
+                    <form action="/filter-read" method="POST">
+                        <li><button type="submit">All</button></li>
+                    </form>
+
                     <form action="/filter-read" method="POST">
                         <li><button id="read-button" type="submit">Read</button></li>
                     </form>
-                    <li><button type="submit">To Read</button></li>
+
+                    <form action="/filter-to-read" method="POST">
+                        <li><button id="toRead-button" type="submit">To Read</button></li>
+                    </form>
                 </ul>
                 
             </nav>

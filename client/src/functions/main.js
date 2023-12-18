@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const readIcons = [...document.querySelectorAll("li [data-itemread]")];
     const doneIcons = [...document.querySelectorAll("li [data-itemdone]")];
     const readButton = document.getElementById("read-button");
+    const toReadButton = document.getElementById("toRead-button");
 
     updateItemContent(items);
     updateUI(trashBins, "li[data-itemid]", deleteItem, "delete");
@@ -17,5 +18,5 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUI(doneIcons, "li[data-itemid]", markAsRead, "toRead");
 
     filterItems(readButton, "filter-read");
-    
+    filterItems(toReadButton, "filter-to-read");
 });
