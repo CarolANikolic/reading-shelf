@@ -1,6 +1,7 @@
 import updateErrorMessage from "./updateErrorMessage.js";
+import removeIcons from "./removeIcons.js";
 
-const filterItems = (filterButton, elementIdentifier, keyword) => {
+const filterItems = (filterButton, elementIdentifier, keyword, itemsToRemove) => {
     filterButton.addEventListener("click", async () => {
         try {
             const filterResponse = await fetch(`/filter`, {
@@ -12,6 +13,9 @@ const filterItems = (filterButton, elementIdentifier, keyword) => {
 
             // Get HTML response as text
             let responseText = await filterResponse.text(); 
+            
+            // Remove Icons from responseText
+            responseText = removeIcons(responseText, itemsToRemove);
 
             if (filterResponse.ok) {
                 // Update the DOM with the modified HTML
