@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const doneIcons = [...document.querySelectorAll("li [data-itemdone]")];
     const readButton = document.getElementById("read-button");
     const toReadButton = document.getElementById("toRead-button");
+    const allItems = document.getElementById("allItems")
 
     updateItemContent(items);
     updateUI(trashBins, "li[data-itemid]", deleteItem, "delete");
