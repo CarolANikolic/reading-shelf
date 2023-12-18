@@ -71,6 +71,7 @@ app.post("/", async (req, res) => {
                 await insertDataIntoDb(db, tableName, columns, values);
 
                 const updatedItems = await queryAllItems(db, "book_list");
+                
                 res.render("index.ejs", { items: updatedItems, errorMessage: "" });
             } else {
                 const items = await queryAllItems(db, "book_list");
@@ -148,18 +149,22 @@ app.put("/read/:itemID", async (req, res) => {
     }
 });
 
-app.get('/filter', async (req, res) => {
+
+app.post("/filter-read", async (req, res) => {
     try {
-        const filteredItems = await filterItemsFromDb(db, 'book_list', 'active', false);
-        
-        res.render("index.ejs", { items: filteredItems, errorMessage: "" });
-        console.log('Sent filtered items successfully');
+        const filteredItems = await filterItemsFromDb(db, 'book_list', 'active', false);   
+        if (filteredItems.length > 0) {
+            res.render("index.ejs", { items: filteredItems, errorMessage: "" });     
+        } else {
+            res.render("index.ejs", { items: filteredItems, errorMessage: "You don't have any read titles yet." });
+        }
+
     } catch (error) {
         console.error('Error filtering items:', error);
         res.status(500).json({ error: 'Error filtering items' });
     }
-});
 
+});
 
 
 const server = app.listen(port, () => {
