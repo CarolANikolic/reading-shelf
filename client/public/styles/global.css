@@ -58,17 +58,19 @@ header, main {
 
 .form-book,
 .book-list,
-.filters {
+.filters,
+.footer {
     margin-top:  2rem;
 }
 
 .filters {
-    display: flex;
+    display: flex;  
 }
 
 .footer {
     bottom: 0;
 }
+
 
 @media screen and (min-width: 768px) {
 
