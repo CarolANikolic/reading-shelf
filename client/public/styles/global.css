@@ -7,6 +7,9 @@ html, body, ul {
 body {
     background-color: #FDFDFD;
     font-family: 'Libre Baskerville', serif;
+
+    min-height: 100vh;
+    position: relative;
 }
 
 header, main {
@@ -67,7 +70,8 @@ header, main {
 }
 
 .footer {
-    margin-bottom: 0;
+    bottom: 0;
+    position: absolute;
 }
 
 @media screen and (min-width: 768px) {
