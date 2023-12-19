@@ -54,13 +54,16 @@ header, main {
 
 .book-list {
     list-style-type: none;
+
+    height: 200px; 
+    overflow: auto;
 }
 
 .form-book,
 .book-list,
 .filters,
 .footer {
-    margin-top:  2rem;
+    margin-top: 2rem;
 }
 
 .filters {
