@@ -29,7 +29,7 @@
         </section>
 
         <% if (items.length > 0) { %>
-            <ul>
+            <ul class="book-list">
                 <% items.forEach(item => { %>
                     <li 
                     contenteditable="true"
@@ -49,21 +49,18 @@
                     </ul>
                     <% } %>
                     
-                    <nav>
-                        <ul>
-                            <form action="/" method="GET">
-                                <li><button id="allItems" type="submit">All</button></li>
-                            </form>
-                            
-                            <form action="/filter-read" method="POST">
-                                <li><button id="read-button" type="submit">Read</button></li>
-                            </form>
-                            
-                            <form action="/filter-to-read" method="POST">
-                                <li><button id="toRead-button" type="submit">To Read</button></li>
-                            </form>
-                        </ul>
+                    <nav class="filters">
+                        <form action="/" method="GET">
+                            <button id="allItems" type="submit">All</button>
+                        </form>
                         
+                        <form action="/filter-read" method="POST">
+                            <button id="read-button" type="submit">Read</button>
+                        </form>
+                        
+                        <form action="/filter-to-read" method="POST">
+                            <button id="toRead-button" type="submit">To Read</button>
+                        </form>
                     </nav>
     </main>
 
