@@ -40,11 +40,15 @@ header, main {
 .intro__text__title {
     font-size: 1.75rem;
     font-weight: 700;
-    text-align: center;
 }
 
 .intro__text_paragraph {
     font-size: 1rem;
+}
+
+.intro__text__title,
+.intro__text_paragraph,
+.footer {
     text-align: center;
 }
 
