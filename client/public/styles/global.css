@@ -23,7 +23,8 @@ header, main {
 .main, 
 .form-book,
 .book-list,
-.footer {
+.footer,
+.filters {
     margin: 0 auto;
     width: 90%;
 }
