@@ -12,18 +12,17 @@
         <img class="logo" src="../public/images/logo.svg" alt="reading Shelf Logo">
     </header>
     <main class="main-position main-organization">
-        <section>
-            <div>
+        <section class="intro-section">
+            <div class="intro__text">
                 <h1>Books to Read Before You Die</h1>
                 <p>Life's too short to miss out on great reads.</p>
             </div>
 
-            <form action="/" method="POST">
+            <form class="form-book" action="/" method="POST">
                 <label for="input-book">Add a book to read:</label>
                 <input placeholder="e.g. The Bell Jar - Sylvia Plath" id="input-book" name="item" required></input>
+                <span class="errorMessage"><%= errorMessage %></span>
             </form>
-    
-            <span class="errorMessage"><%= errorMessage %></span>
         </section>
 
         <section>

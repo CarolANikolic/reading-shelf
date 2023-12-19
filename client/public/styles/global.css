@@ -25,7 +25,10 @@ header, main {
     width: 90%;
 }
 
-.main-organization {
+.main-organization, 
+.intro-section,
+.intro__text,
+.form-book {
     display: flex;
     flex-direction: column;
 }
