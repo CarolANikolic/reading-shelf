@@ -7,3 +7,7 @@ html, body {
 body {
     background-color: #FDFDFD;
 }
+
+header, main {
+    width: 100%;
+}
