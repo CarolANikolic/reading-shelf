@@ -19,7 +19,8 @@ header, main {
     margin-left: 2rem;
 }
 
-.main-position {
+.main-position, 
+.footer-position {
     margin: 0 auto;
     width: 90%;
 }
