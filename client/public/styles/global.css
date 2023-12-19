@@ -63,6 +63,8 @@ main {
 }
 
 .book-list {
+    background-color: #1B3739;
+    color: #e3e1e1;
     list-style-type: none;
 
     height: 200px; 
