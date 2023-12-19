@@ -21,15 +21,17 @@ header, main {
 }
 
 .main, 
-.footer,
-.book-list {
+.form-book,
+.book-list,
+.footer {
     margin: 0 auto;
     width: 90%;
 }
 
 .main, 
 .intro-section,
-.intro__text {
+.intro__text,
+.form-book {
     display: flex;
     flex-direction: column;
 }
