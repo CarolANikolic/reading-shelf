@@ -13,6 +13,8 @@ header, main {
 }
 
 .logo {
-    width: 100px;
     height: 100px;
+    width: 100px;
+
+    margin-left: 2rem;
 }
