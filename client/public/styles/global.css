@@ -51,16 +51,12 @@ main {
     flex-direction: column;
 }
 
-.intro__text__title {
-    font-size: 1.75rem;
-    font-weight: 700;
-}
 
 .intro__text_paragraph {
     font-size: 1rem;
 }
 
-.intro__text__title,
+.header-title,
 .intro__text_paragraph,
 .footer {
     text-align: center;
@@ -91,7 +87,7 @@ main {
 
 @media screen and (min-width: 768px) {
 
-    .intro__text__title,
+    .header-title,
     .intro__text_paragraph {
         text-align: left;
     }
