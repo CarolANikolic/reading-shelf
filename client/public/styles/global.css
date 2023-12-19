@@ -9,7 +9,19 @@ body {
     font-family: 'Libre Baskerville', serif;
 }
 
-header, main {
+header {
+    height: 200px; 
+    width: 100%;
+    background-image: url("../images/bookshelf.png"); 
+    background-size: cover;
+    background-position: center;
+    
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+main {
     width: 100%;
 }
 
