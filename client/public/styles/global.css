@@ -62,4 +62,11 @@ header, main {
     .intro__text_paragraph {
         text-align: left;
     }
+
+    .intro__text,
+    .form-book,
+    .book-list,
+    .filters {
+        width: 70%;
+    }
 }
