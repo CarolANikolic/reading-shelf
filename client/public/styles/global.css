@@ -74,3 +74,12 @@ header, main {
         width: 70%;
     }
 }
+
+@media screen and (min-width: 900px) {
+    .intro__text,
+    .form-book,
+    .book-list,
+    .filters {
+        width: 50%;
+    }
+}
