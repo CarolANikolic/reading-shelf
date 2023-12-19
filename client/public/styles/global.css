@@ -55,3 +55,11 @@ header, main {
 .book-list {
     list-style-type: none;
 }
+
+@media screen and (min-width: 768px) {
+
+    .intro__text__title,
+    .intro__text_paragraph {
+        text-align: left;
+    }
+}

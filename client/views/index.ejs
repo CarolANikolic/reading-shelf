@@ -22,9 +22,9 @@
             </div>
 
             <form class="form-book" action="/" method="POST">
-                <label for="input-book">Add a book to read:</label>
-                <input placeholder="e.g. The Bell Jar - Sylvia Plath" id="input-book" name="item" required></input>
-                <span class="errorMessage"><%= errorMessage %></span>
+                <label class="form--book__label" for="input-book">Add a book to read:</label>
+                <input class="form--book__input" placeholder="e.g. The Bell Jar - Sylvia Plath" id="input-book" name="item" required></input>
+                <span class="form--book__message" class="errorMessage"><%= errorMessage %></span>
             </form>
         </section>
 
