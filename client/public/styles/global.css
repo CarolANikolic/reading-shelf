@@ -46,9 +46,3 @@ header, main {
 }
 
 
-@media screen and (min-width: 769px) {
-    .intro__text__title,
-    .intro__text_paragraph  {
-        text-align: left;
-    }
-}
