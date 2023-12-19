@@ -18,3 +18,13 @@ header, main {
 
     margin-left: 2rem;
 }
+
+.main-position {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.main-organization {
+    display: flex;
+    flex-direction: column;
+}
