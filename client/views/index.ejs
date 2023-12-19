@@ -28,45 +28,43 @@
             </form>
         </section>
 
-        <section>
-                <% if (items.length > 0) { %>
-                    <ul>
-                        <% items.forEach(item => { %>
-                            <li 
-                            contenteditable="true"
-                            data-itemid="<%= item.id%>" >
-                                    <%= item.content %>
-                                
-                                <img class="test" data-itemdelete="delete" src="../public/images/icon-trash.svg" alt="Delete book"/>
-                                
-                                <% if (item.active === false) { %>
-                                    <img data-itemdone="done" src="../public/images/done-read.svg" alt="Done reading icon"/>
-                                <% }  else { %>
-                                    <img data-itemread="read" src="../public/images/icon-read.svg" alt="Mark as read"/>
-                                <% } %>
-                                
-                            </li>
+        <% if (items.length > 0) { %>
+            <ul>
+                <% items.forEach(item => { %>
+                    <li 
+                    contenteditable="true"
+                    data-itemid="<%= item.id%>" >
+                    <%= item.content %>
+                    
+                    <img class="test" data-itemdelete="delete" src="../public/images/icon-trash.svg" alt="Delete book"/>
+                    
+                    <% if (item.active === false) { %>
+                        <img data-itemdone="done" src="../public/images/done-read.svg" alt="Done reading icon"/>
+                        <% }  else { %>
+                            <img data-itemread="read" src="../public/images/icon-read.svg" alt="Mark as read"/>
+                            <% } %>
+                            
+                        </li>
                         <% }); %>
                     </ul>
-                <% } %>
-
-            <nav>
-                <ul>
-                    <form action="/" method="GET">
-                        <li><button id="allItems" type="submit">All</button></li>
-                    </form>
-
-                    <form action="/filter-read" method="POST">
-                        <li><button id="read-button" type="submit">Read</button></li>
-                    </form>
-
-                    <form action="/filter-to-read" method="POST">
-                        <li><button id="toRead-button" type="submit">To Read</button></li>
-                    </form>
-                </ul>
-                
-            </nav>
-        </section>
+                    <% } %>
+                    
+                    <nav>
+                        <ul>
+                            <form action="/" method="GET">
+                                <li><button id="allItems" type="submit">All</button></li>
+                            </form>
+                            
+                            <form action="/filter-read" method="POST">
+                                <li><button id="read-button" type="submit">Read</button></li>
+                            </form>
+                            
+                            <form action="/filter-to-read" method="POST">
+                                <li><button id="toRead-button" type="submit">To Read</button></li>
+                            </form>
+                        </ul>
+                        
+                    </nav>
     </main>
 
     <footer class="footer">
