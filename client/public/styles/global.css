@@ -20,13 +20,13 @@ header, main {
     margin-left: 2rem;
 }
 
-.main-position, 
-.footer-position {
+.main, 
+.footer {
     margin: 0 auto;
     width: 90%;
 }
 
-.main-organization, 
+.main, 
 .intro-section,
 .intro__text,
 .form-book {
@@ -44,5 +44,3 @@ header, main {
     font-size: 1rem;
     text-align: center;
 }
-
-
