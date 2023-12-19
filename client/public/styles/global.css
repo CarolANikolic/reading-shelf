@@ -47,3 +47,7 @@ header, main {
     font-size: 1rem;
     text-align: center;
 }
+
+.book-list {
+    list-style-type: none;
+}
