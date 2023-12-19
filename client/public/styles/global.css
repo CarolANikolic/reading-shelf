@@ -63,6 +63,10 @@ header, main {
         text-align: left;
     }
 
+    .intro__text {
+        margin: 0 auto;
+    }
+
     .intro__text,
     .form-book,
     .book-list,
