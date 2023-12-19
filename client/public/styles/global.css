@@ -26,8 +26,8 @@ header {
     margin: 0;
     width: 90%;
     
-    color: #e3e1e1;
-    font-size: 1.75rem;
+    color: #fff;
+    font-size: 2.5rem;
     font-weight: 700;
 }
 
@@ -113,5 +113,9 @@ main {
     .book-list,
     .filters {
         width: 50%;
+    }
+
+    .header-title {
+        width: 45%;
     }
 }
