@@ -13,13 +13,6 @@ header, main {
     width: 100%;
 }
 
-.logo {
-    height: 100px;
-    width: 100px;
-
-    margin-left: 2rem;
-}
-
 .main, 
 .book-list,
 .form-book,
