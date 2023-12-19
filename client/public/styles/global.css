@@ -1,4 +1,4 @@
-html, body {
+html, body, ul {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -21,8 +21,8 @@ header, main {
 }
 
 .main, 
-.form-book,
 .book-list,
+.form-book,
 .footer,
 .filters {
     margin: 0 auto;
