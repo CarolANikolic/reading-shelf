@@ -120,6 +120,9 @@ main {
     font-weight: bolder;
 }
 
+.filters__form {
+    text-align: center;
+}
 
 .footer {
     bottom: 0;
