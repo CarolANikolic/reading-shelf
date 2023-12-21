@@ -1,6 +1,7 @@
 const filterItems = (filterButton, endpointName) => {
     filterButton.addEventListener("click", () => {
         try {
+            filterButton.classList.add("filters__btn--active");
             fetch(`/${endpointName}`, {
                 method: "POST",
                 headers: {

@@ -123,12 +123,16 @@ main {
     text-align: center;
 }
 
-.filters  button {
+.filters__btn {
     width: 100%;
     
     border: none;
     color: #e3e1e1;
     font-weight: bolder;
+}
+
+.filters__btn:hover {
+    color: #2EC6A6;
 }
 
 .footer {
