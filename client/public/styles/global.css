@@ -103,6 +103,13 @@ main {
     margin-top: 2rem;
 }
 
+.trashbin-icon,
+.done-icon,
+.read-icon,
+.filters  button:hover {
+    cursor: pointer;
+}
+
 .filters {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -112,16 +119,16 @@ main {
     height: 50px; 
 }
 
+.filters__form {
+    text-align: center;
+}
+
 .filters  button {
     width: 100%;
     
     border: none;
     color: #e3e1e1;
     font-weight: bolder;
-}
-
-.filters__form {
-    text-align: center;
 }
 
 .footer {
