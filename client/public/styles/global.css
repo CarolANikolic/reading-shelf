@@ -67,7 +67,6 @@ main {
 }
 
 .form--book__input {
-    background-color: #1B3739;
     color: #e3e1e1;
 
     border: none;
@@ -76,7 +75,6 @@ main {
 }
 
 .book-list {
-    background-color: #1B3739;
     color: #e3e1e1;
     list-style-type: none;
 
@@ -92,15 +90,27 @@ main {
     padding: 10px 20px;
 }
 
+.book-list,
+.form--book__input,
+.filters,
+.filters button  {
+    background-color: #1B3739;
+}
+
 .form-book,
 .book-list,
-.filters,
 .footer {
     margin-top: 2rem;
 }
 
 .filters {
-    display: flex;  
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: center;
+    
+    height: 50px; 
+    
 }
 
 .footer {
