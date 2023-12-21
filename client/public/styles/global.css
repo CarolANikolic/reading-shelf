@@ -110,8 +110,16 @@ main {
     align-items: center;
     
     height: 50px; 
-    
 }
+
+.filters  button {
+    width: 100%;
+    
+    border: none;
+    color: #e3e1e1;
+    font-weight: bolder;
+}
+
 
 .footer {
     bottom: 0;
