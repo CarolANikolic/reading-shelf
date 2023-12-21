@@ -62,6 +62,19 @@ main {
     text-align: center;
 }
 
+.form--book__label {
+    padding-bottom: 1rem;
+}
+
+.form--book__input {
+    background-color: #1B3739;
+    color: #e3e1e1;
+
+    border: none;
+    font-family: 'Libre Baskerville', serif;
+    padding: 10px 20px;
+}
+
 .book-list {
     background-color: #1B3739;
     color: #e3e1e1;
