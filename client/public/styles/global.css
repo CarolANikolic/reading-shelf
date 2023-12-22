@@ -8,6 +8,9 @@ body {
     background-color: #0D1A1B;
     color: #e3e1e1;
     font-family: 'Libre Baskerville', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -16,10 +19,6 @@ header {
     background-image: url("../images/bookshelf.png"); 
     background-size: cover;
     background-position: center;
-    
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
 }
 
 .header-title {
@@ -132,6 +131,10 @@ main {
 }
 
 .filters__btn:hover {
+    color: #2EC6A6;
+}
+
+.filters__btn--active {
     color: #2EC6A6;
 }
 

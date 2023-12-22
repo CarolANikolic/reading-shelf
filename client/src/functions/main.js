@@ -3,6 +3,7 @@ import updateUI  from "./updateUI.js";
 import deleteItem from "./deleteItem.js";
 import markAsRead from "./markAsRead.js";
 import filterItems from "./filterItems.js";
+import handleFiltersStyle from "./handleFiltersStyle.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const items = [...document.querySelectorAll("[data-itemid]")];
@@ -11,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const doneIcons = [...document.querySelectorAll("li [data-itemdone]")];
     const readButton = document.getElementById("read-button");
     const toReadButton = document.getElementById("toRead-button");
-    const allItems = document.getElementById("allItems")
 
     updateItemContent(items);
     updateUI(trashBins, "li[data-itemid]", deleteItem, "delete");
@@ -20,4 +20,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filterItems(readButton, "filter-read");
     filterItems(toReadButton, "filter-to-read");
+    handleFiltersStyle();
 });
