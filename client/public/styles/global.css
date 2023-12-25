@@ -79,6 +79,12 @@ body,
     padding: 10px 20px;
 }
 
+.form--book__message {
+    color: tomato;
+    font-size: 0.8rem;
+    margin: .5rem 0 1rem 0;
+}
+
 .book-list {
     color: #e3e1e1;
     list-style-type: none;
