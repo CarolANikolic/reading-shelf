@@ -106,6 +106,7 @@ body,
 .filters,
 .filters button  {
     background-color: #1B3739;
+    border-radius: 10px;
 }
 
 .form-book,
