@@ -94,7 +94,7 @@ body,
 }
 
 .book-list  li {
-    border-bottom: 1px solid #e3e1e1;
+    border-bottom: 1px solid #e3e1e175;
     font-size: .8rem;
 
     margin: 0;
