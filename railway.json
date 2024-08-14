@@ -1,0 +1,16 @@
+{
+    "services": [
+        {
+            "name": "server",
+            "path": "server/",
+            "build": "npm install",
+            "start": "npm start"
+        },
+        {
+            "name": "client",
+            "path": "client/",
+            "build": "npm run build",
+            "start": "npm start"
+        }
+    ]
+}
